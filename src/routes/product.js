@@ -21,4 +21,18 @@ router.get('/:id', async (req, res) => {
     } 
 })
 
+router.post('/', async (req, res) => {
+    const body = req.body
+    const newProduct = await db.get('products').push(body).write()
+    
+    res.json(newProduct)
+})
+
+router.delete('/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+    const newProduct = await db.get('products').remove({ id: id }).write()
+    
+    res.json(newProduct)
+})
+
 module.exports = router
