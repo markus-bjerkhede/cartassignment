@@ -1,0 +1,43 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "sko 1",
+      "price": 499,
+      "imgUrl": "https://placeimg.com/640/480/tech"
+    },
+    {
+      "id": 2,
+      "name": "sko 2",
+      "price": 499,
+      "imgUrl": "https://placeimg.com/640/480/tech"
+    },
+    {
+      "id": 3,
+      "name": "sko 3",
+      "price": 499,
+      "imgUrl": "https://placeimg.com/640/480/tech"
+    }
+  ],
+  "cart": [
+    {
+      "id": 2,
+      "name": "sko 2",
+      "price": 499,
+      "imgUrl": "https://placeimg.com/640/480/tech"
+    },
+    {
+      "id": 3,
+      "name": "sko 3",
+      "price": 499,
+      "imgUrl": "https://placeimg.com/640/480/tech"
+    },
+    {
+      "id": 1,
+      "name": "sko 1",
+      "price": 499,
+      "imgUrl": "https://placeimg.com/640/480/tech"
+    }
+  ],
+  "count": 0
+}
