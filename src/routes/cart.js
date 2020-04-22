@@ -17,12 +17,9 @@ router.post('/add', async (req, res) => {
         return
     }
     const cart = await db.get('cart');
-    console.log('products in cart', cart.value())
     const productIds = cart.value().map((product) => {
         return product.id;
     })
-    console.log('productIDs', productIds)
-    console.log('exists in cart', productIds.includes(product.id))
     if (productIds.includes(product.id)) {
         res.status(400).send('Product already exists in cart')
         return
@@ -36,12 +33,9 @@ router.post('/add', async (req, res) => {
 
 router.post('/remove', async (req, res) => {
     const cart = await db.get('cart');
-    console.log('products in cart', cart.value())
     const productIds = cart.value().map((product) => {
         return product.id;
     })
-    console.log('productIDs', productIds)
-    console.log('exists in cart', productIds.includes(req.body.product))
     if (!productIds.includes(req.body.product)) {
         res.status(400).send('Product does not exist in cart')
         return
