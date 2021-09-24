@@ -4,15 +4,8 @@ const app = express();
 const cors = require("cors");
 
 const port = process.env.PORT || 3000;
-// const corsOptions = {
-//     origin: 'http://localhost:8080',
-//     credentials: true,
-//     optionSuccessStatus: 200,
-// }
-app.use(cors({
-    credentials: true,
-    origin: 'http://127.0.0.1:5500'
-}))
+
+app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
