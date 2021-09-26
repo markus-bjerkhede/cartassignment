@@ -1,16 +1,33 @@
-// fetch('localhost:3000/api/cart')
-//   .then(response => response.json())
-//   .then(data => console.log(data));
-// console.log(response)
+window.addEventListener('load', async() => {
+  getProducts();
+})
 
-var products = {
-  method: 'GET',
-};
+function getProducts() {
+fetch("http://localhost:3000/api/product")
+  .then(response => {
+    if (!response.ok) {
+      throw Error('ERROR');
+    }
+      return response.json();
+    })
+  .then (products => { 
+    console.log(products);
+    const html = products.map(product => {
+    return `
+    <div class="product"> 
+    <p> Name: ${product.name}</p>
+    <p> Price: ${product.price}</p>
+    <p> Image: ${product.imgUrl}</p>
+    </div>
+    `;
+  }).join("");
+  console.log(html)
+  document.querySelector('#products').insertAdjacentHTML("afterbegin", html);
+})
+  .catch(error => {console.log(error);
+});
+}
 
-fetch("http://localhost:3000/api/product", products)
-  .then(products => products.json())
-  .then(products => console.log(products, products.name))
-  .catch(error => console.log('error', error));
 
 // function renderProducts(json) {
 //   const main = document.querySelector('main')
