@@ -19,6 +19,13 @@
       "imgUrl": "https://placeimg.com/640/480/tech"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": 1,
+      "name": "sko",
+      "price": 499,
+      "imgUrl": "https://placeimg.com/640/480/tech"
+    }
+  ],
   "count": 0
 }

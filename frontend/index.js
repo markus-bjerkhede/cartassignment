@@ -18,8 +18,9 @@ fetch("http://localhost:3000/api/product")
     <p> Name: ${product.name}</p>
     <p> Price: ${product.price}</p>
     <p> Image: ${product.imgUrl}</p>
+    <button class="add" onclick="addToCart()"> </button>
     </div>
-    `;
+    `
   }).join("");
   console.log(html)
   document.querySelector('#products').insertAdjacentHTML("afterbegin", html);
@@ -29,38 +30,17 @@ fetch("http://localhost:3000/api/product")
 }
 
 
-// function renderProducts(json) {
-//   const main = document.querySelector('main')
-//   json.forEach(products => {
-//     const h2 = document.createElement('h2')
-//     h2.innerHTML = `<h2>${book.name}</h2>`
-//     main.appendChild(h2)
-//   })
-// }
-
-// var requestOptions = {
-//   method: 'GET',
-// };
-
-// fetch("http://localhost:3000/api/product", requestOptions)
-//   .then(response => response.json())
-//   .then(result => console.log(result))
-//   .catch(error => console.log('error', error));
-
-// var requestOptions = {
-//   method: 'GET',
-// };
-
-// fetch("http://localhost:3000/api/product", requestOptions)
-//   .then(response => response.json())
-//   .then(result => console.log(result))
-//   .catch(error => console.log('error', error));
-
-// var requestOptions = {
-//   method: 'GET',
-// };
-
-// fetch("http://localhost:3000/api/product", requestOptions)
-//   .then(response => response.json())
-//   .then(result => console.log(result))
-//   .catch(error => console.log('error', error));
+function addToCart() {
+  const body = {product: id}
+  console.log(product)
+  fetch("http://localhost:3000/api/cart/add", {
+    "method": "POST",
+    "body": JSON.stringify(body) 
+  })
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  });
+}
