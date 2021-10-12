@@ -1,46 +1,44 @@
-window.addEventListener('load', async() => {
-  getProducts();
+let products;
+let product;
+window.addEventListener('load', async () => {
+  products = await getProducts();
+  renderProducts();
+  console.log(product.name)
+
 })
 
-function getProducts() {
-fetch("http://localhost:3000/api/product")
-  .then(response => {
-    if (!response.ok) {
-      throw Error('ERROR');
-    }
-      return response.json();
-    })
-  .then (products => { 
-    console.log(products);
-    const html = products.map(product => {
-    return `
-    <div class="product"> 
-    <p> Name: ${product.name}</p>
-    <p> Price: ${product.price}</p>
-    <p> Image: ${product.imgUrl}</p>
-    <button class="add" onclick="addToCart()"> </button>
-    </div>
-    `
-  }).join("");
-  console.log(html)
-  document.querySelector('#products').insertAdjacentHTML("afterbegin", html);
-})
-  .catch(error => {console.log(error);
-});
+async function getProducts() {
+  const response = await fetch("http://localhost:3000/api/product")
+  return response.json();
 }
 
-
-function addToCart() {
-  const body = {product: id}
-  console.log(product)
-  fetch("http://localhost:3000/api/cart/add", {
-    "method": "POST",
-    "body": JSON.stringify(body) 
-  })
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
+async function renderProducts() {
+  console.log(products)
+  products.forEach(product => {
+    const html =
+      `
+      <div class="product"> 
+      <p> Name: ${product.name}</p>
+      <p> Price: ${product.price} kr</p>
+      <img> Image: ${product.imgUrl}</img>
+      <button class="add" onclick="addToCart()">Add to cart</button>
+      </div>
+      `;
+    return document.querySelector('#products').insertAdjacentHTML("afterbegin", html);
   });
+};
+function addToCart() {
+
+  const productId = { product: product.id }
+  const body = JSON.stringify(productId);
+  fetch("http://localhost:3000/api/cart/add", {
+    method: "POST",
+    body: body
+  })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.error(err);
+    });
 }
