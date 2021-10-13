@@ -1,4 +1,5 @@
-#products {
+#products,
+#cartItems {
     display: flex;
     flex-direction: column;
 }
@@ -9,4 +10,33 @@
     display: inline-flex;
     flex-direction: column;
     width: 30%;
+}
+
+.empty {
+    margin-left: 15.5rem;
+}
+
+h1 {
+    margin: 1rem 9rem;
+}
+
+.to-cart,
+.to-index,
+a {
+    text-align: center;
+    color: black;
+    margin: 1rem 7rem;
+    text-decoration: none;
+    padding: 0.5rem;
+}
+
+img {
+    width: 254px;
+    height: 200px;
+    margin: 0rem 0rem 1rem 10rem;
+    border-radius: 20%;
+}
+
+.product p {
+    text-align: center;
 }

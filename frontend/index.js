@@ -1,10 +1,7 @@
 let products;
-let product;
 window.addEventListener('load', async () => {
   products = await getProducts();
   renderProducts();
-  console.log(product.name)
-
 })
 
 async function getProducts() {
@@ -13,27 +10,30 @@ async function getProducts() {
 }
 
 async function renderProducts() {
-  console.log(products)
   products.forEach(product => {
     const html =
       `
-      <div class="product"> 
-      <p> Name: ${product.name}</p>
-      <p> Price: ${product.price} kr</p>
-      <img> Image: ${product.imgUrl}</img>
-      <button class="add" onclick="addToCart()">Add to cart</button>
+      <div class="product">
+        <p> Name: ${product.name}</p>
+        <p> Price: ${product.price} kr</p>
+        <img src="${product.imgUrl}" alt="image">
+        <button class="add" onclick="addToCart(this)">Add to cart</button>
       </div>
       `;
     return document.querySelector('#products').insertAdjacentHTML("afterbegin", html);
   });
 };
-function addToCart() {
+async function addToCart(element) {
+  var index = Array.prototype.slice.call(element.parentElement.parentElement.children).indexOf(element.parentElement);
 
-  const productId = { product: product.id }
-  const body = JSON.stringify(productId);
-  fetch("http://localhost:3000/api/cart/add", {
+  const product = products[index];
+  const data = { productId: product.id };
+  await fetch("http://localhost:3000/api/cart/add", {
     method: "POST",
-    body: body
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
   })
     .then(response => {
       console.log(response);

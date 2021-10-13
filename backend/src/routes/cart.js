@@ -9,11 +9,10 @@ router.get('/', async (req, res) => {
 
 router.post('/add', async (req, res) => {
 
-    const productId = parseInt(req.body.product)
+    const productId = parseInt(req.body.productId)
     const product = db.get('products').find({ id: productId }).value()
-    console.log('product', product)
     if (product === undefined) {
-        res.status(400).send('Product does not exist')
+        res.status(404).send('Product does not exist')
         return
     }
     const cart = await db.get('cart');
@@ -23,12 +22,12 @@ router.post('/add', async (req, res) => {
     if (productIds.includes(product.id)) {
         res.status(400).send('Product already exists in cart')
         return
-    }     
+    }
     const result = await cart
         .push(product)
         .write()
 
-    res.json(result);  
+    res.json(result);
 })
 
 router.post('/remove', async (req, res) => {
@@ -36,11 +35,11 @@ router.post('/remove', async (req, res) => {
     const productIds = cart.value().map((product) => {
         return product.id;
     })
-    if (!productIds.includes(req.body.product)) {
+    if (!productIds.includes(req.body.productId)) {
         res.status(400).send('Product does not exist in cart')
         return
-    }     
-    await cart.remove({ id: req.body.product }).write()
+    }
+    await cart.remove({ id: req.body.productId }).write()
     res.json(cart)
 })
 
