@@ -19,19 +19,6 @@
       "imgUrl": "https://placeimg.com/640/480/tech"
     }
   ],
-  "cart": [
-    {
-      "id": 1,
-      "name": "sko",
-      "price": 499,
-      "imgUrl": "https://placeimg.com/640/480/tech"
-    },
-    {
-      "id": 2,
-      "name": "byxor",
-      "price": 1499,
-      "imgUrl": "https://placeimg.com/640/480/tech"
-    }
-  ],
+  "cart": [],
   "count": 0
 }

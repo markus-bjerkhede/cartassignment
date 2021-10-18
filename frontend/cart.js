@@ -42,6 +42,7 @@ async function removeFromCart(element) {
     })
         .then(response => {
             console.log(response);
+            getCartItems();
         })
         .catch(err => {
             console.error(err);
